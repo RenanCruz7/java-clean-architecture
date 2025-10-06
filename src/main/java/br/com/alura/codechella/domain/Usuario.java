@@ -8,6 +8,18 @@ public class Usuario {
     private LocalDate nascimento;
     private String email;
 
+
+    public Usuario(String cpf, String nome, LocalDate nascimento, String email) {
+        if (cpf == null || !cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")) {
+            throw new IllegalArgumentException("CPF invalido");
+        }
+
+        this.cpf = cpf;
+        this.nome = nome;
+        this.nascimento = nascimento;
+        this.email = email;
+    }
+
     public String getCpf() {
         return cpf;
     }
