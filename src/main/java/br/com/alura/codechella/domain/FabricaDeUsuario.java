@@ -9,7 +9,7 @@ public class FabricaDeUsuario {
         this.usuario = new Usuario(cpf,nome,nascimento,"");
         return this.usuario;
     }
-    private Usuario incluiEndereco(String cep, Integer numero, String complemento){
+    public Usuario incluiEndereco(String cep, Integer numero, String complemento){
         this.usuario.setEndereco(new Endereco(cep,numero,complemento));
         return this.usuario;
     }
