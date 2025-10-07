@@ -5,6 +5,12 @@ public class Endereco {
     private Integer numero;
     private  String complemento;
 
+    public Endereco(String cep, Integer numero, String complemento) {
+        this.cep = cep;
+        this.numero = numero;
+        this.complemento = complemento;
+    }
+
     public String getCep() {
         return cep;
     }
