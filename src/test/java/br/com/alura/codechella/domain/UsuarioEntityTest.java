@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-public class UsuarioTest {
+public class UsuarioEntityTest {
     @Test
     public void naoDeveCadastrarUsuarioComCpfInvalido() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Usuario("123456789-99", "nome", LocalDate.parse("1990-09-08"), "email@email.com"));
