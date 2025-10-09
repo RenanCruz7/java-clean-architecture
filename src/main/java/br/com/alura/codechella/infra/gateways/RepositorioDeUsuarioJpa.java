@@ -21,4 +21,11 @@ public class RepositorioDeUsuarioJpa implements RepositorioDeUsuario {
         repositorio.save((usuarioEntity));
         return usuarioEntityMapper.toDomain(usuarioEntity);
     }
+
+    @Override
+    public java.util.List<Usuario> listarUsuarios() {
+        return repositorio.findAll().stream()
+                .map(usuarioEntityMapper::toDomain)
+                .toList();
+    }
 }
