@@ -1,19 +1,21 @@
 package br.com.alura.codechella.infra.controller;
 
 import br.com.alura.codechella.application.usecases.CriarUsuario;
+import br.com.alura.codechella.application.usecases.ListarUsuarios;
 import br.com.alura.codechella.domain.Usuario;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
     private final CriarUsuario criarUsuario;
+    private final ListarUsuarios listarUsuarios;
 
-    public UsuarioController(CriarUsuario criarUsuario) {
+    public UsuarioController(CriarUsuario criarUsuario, ListarUsuarios listarUsuarios) {
+        this.listarUsuarios = listarUsuarios;
         this.criarUsuario = criarUsuario;
     }
 
@@ -23,4 +25,14 @@ public class UsuarioController {
 
         return new UsuarioDto(salvo.getCpf(), salvo.getNome(), salvo.getNascimento(), salvo.getEmail());
     }
+
+    @GetMapping
+    public List<UsuarioDto> listarUsuarios(){
+        List<Usuario> usuarios = listarUsuarios.obterTodosUsuarios();
+        return usuarios.stream()
+                .map(usuario -> new UsuarioDto(usuario.getCpf(), usuario.getNome(), usuario.getNascimento(), usuario.getEmail()))
+                .toList();
+    }
+
+
 }

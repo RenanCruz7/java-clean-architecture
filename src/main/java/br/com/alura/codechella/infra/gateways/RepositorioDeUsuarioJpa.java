@@ -5,6 +5,10 @@ import br.com.alura.codechella.domain.Usuario;
 import br.com.alura.codechella.infra.persistence.UsuarioEntity;
 import br.com.alura.codechella.infra.persistence.UsuarioRepository;
 
+import java.util.List;
+
+import static java.util.Arrays.stream;
+
 public class RepositorioDeUsuarioJpa implements RepositorioDeUsuario {
 
     private final UsuarioRepository repositorio;
@@ -23,7 +27,7 @@ public class RepositorioDeUsuarioJpa implements RepositorioDeUsuario {
     }
 
     @Override
-    public java.util.List<Usuario> listarUsuarios() {
+    public List<Usuario> listarUsuarios() {
         return repositorio.findAll().stream()
                 .map(usuarioEntityMapper::toDomain)
                 .toList();
